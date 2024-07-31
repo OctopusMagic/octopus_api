@@ -14,12 +14,19 @@ if MYSQL_PASSWORD:
 else:
     DATABASE_URL = f'mysql://{MYSQL_USER}@{MYSQL_HOST}/{MYSQL_DATABASE}'
 
+CONTINGENCIA = environ.get('CONTINGENCIA', 'False').lower() == 'true'
+
 # Ministerio de Hacienda DTE Credentials
 AUTH_URL = environ.get('AUTH_URL')
 NIT = environ.get('NIT')
 NRC = environ.get('NRC')
 AUTH_PASSWORD = environ.get('AUTH_PASSWORD')
-RECEPTION_URL = environ.get('RECEPTION_URL')
+
+if not CONTINGENCIA:
+    RECEPTION_URL = environ.get('RECEPTION_URL')
+else:
+    RECEPTION_URL = environ.get('RECEPTION_URL_CONTINGENCIA')
+
 CONSULTAS_URL = environ.get('CONSULTAS_URL')
 CONTINGENCIA_URL = environ.get('CONTINGENCIA_URL')
 ANULACION_URL = environ.get('ANULACION_URL')
