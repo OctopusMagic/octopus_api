@@ -1,0 +1,42 @@
+{
+    "receptor": {
+        "nit": "96421908051018",
+        "nrc": "2283122",
+        "nombre": "RESANSIL, S.A. (SUCURSAL EL SALVADOR)",
+        "codActividad": "77300",
+        "descActividad": "Alquiler de Maquinaria y equipo",
+        "nombreComercial": "RESANSIL, S.A. (SUCURSAL EL SALVADOR)",
+        "direccion": {
+            "departamento": "05",
+            "municipio": "09",
+            "complemento": "C.C La Gran Vía, Calle el Pedregal y Carretera Panamericana"
+        },
+        "telefono": "6009-9130",
+        "correo": "auxcontsv@resansil.com"
+    },
+    "cuerpoDocumento": [
+        {
+            "cantidad": 1,
+            "codigo": "1",
+            "descripcion": "Servicios Inmobiliarios de Apto. correspondientes al mes de marzo 2024",
+            "precioUni": 1250.00,
+            "ventaGravada": 1250.00
+        }
+    ],
+    "documentoRelacionado": null,
+    "otrosDocumentos": null,
+    "ventaTercero": null,
+    "resumen": {
+        "descuNoSuj": 0,
+        "descuExtenta": 0,
+        "descuGravada": 0,
+        "porcentajeDescuento": 0,
+        "ivaRete1": 0,
+        "ivaPerci1": 0,
+        "reteRenta": 0,
+        "saldoFavor": 0,
+        "condicionOperacion": 1
+    },
+    "extension": null,
+    "apendice": null
+}

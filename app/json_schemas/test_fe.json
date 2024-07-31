@@ -1,0 +1,34 @@
+{
+    "receptor": {
+        "tipoDocumento": "13",
+        "numDocumento": "00223528-7",
+        "nombre": "Víctor Manuel Santos Ascencio",
+        "telefono": "60299605",
+        "correo": "jose.marcelo.1706@gmail.com"
+    },
+    "cuerpoDocumento": [
+        {
+            "cantidad": 1.0,
+            "codigo": "01",
+            "descripcion": "Cuota fija de Agua Potable Diciembre 2023",
+            "precioUni": 16.00,
+            "ventaGravada": 16.00,
+            "ivaItem": 1.8407
+        }
+    ],
+    "documentoRelacionado": null,
+    "otrosDocumentos": null,
+    "ventaTercero": null,
+    "resumen": {
+        "descuNoSuj": 0,
+        "descuExtenta": 0,
+        "descuGravada": 0,
+        "porcentajeDescuento": 0,
+        "ivaRete1": 0,
+        "reteRenta": 0,
+        "saldoFavor": 0,
+        "condicionOperacion": 1
+    },
+    "extension": null,
+    "apendice": null
+}

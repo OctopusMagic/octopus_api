@@ -1,0 +1,36 @@
+{
+    "receptor": {
+        "tipoDocumento": "13",
+        "numDocumento": "05888353-3",
+        "nrc": null,
+        "nombre": "Gerardo Abdala Chain Hasbun",
+        "nombreComercial": "Gerardo Abdala Chain Hasbun",
+        "codActividad": "58200",
+        "descActividad": "Servicios Informaticos",
+        "direccion": {
+            "departamento": "06",
+            "municipio": "14",
+            "complemento": "CALLE EL CARMEN APTO. 2 COND.RESIDENCIAL ALTOS DEL CARMEN II, #11 SAN SALVADOR"
+        },
+        "telefono": null,
+        "correo": "alguien@ejemplo.com"
+    },
+    "cuerpoDocumento": [
+        {
+            "tipoDte": "03",
+            "tipoDoc": 1,
+            "numDocumento": "FC140B94230E465FAA4AAA2FAAE12977",
+            "fechaEmision": "2024-04-06",
+            "montoSujetoGrav": 1625.00,
+            "codigoRetencionMH": "C4",
+            "ivaRetenido": 211.25,
+            "descripcion": "RETENCION A DOCUMENTO FC140B94230E465FAA4AAA2FAAE12977"
+        }
+    ],
+    "resumen": {
+        "totalSujetoRetencion": 1625.00,
+        "totalIVAretenido": 211.25
+    },
+    "extension": null,
+    "apendice": null
+}

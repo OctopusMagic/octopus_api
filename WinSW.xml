@@ -1,0 +1,12 @@
+<configuration>
+	<!-- ID of the service. It should be unique accross the Windows system-->
+	<id>OCTOPUS-API-SERVICE</id>
+	<!-- Display name of the service -->
+	<name>Servicio Octopus API</name>
+	<!-- Service description -->
+	<description>Servicio firmador de documentos MH</description>
+
+	<!-- we need to execute INICIAR_SERVICIO.bat -->
+	<executable>cmd.exe</executable>
+	<arguments>/c INICIAR_SERVICIO.bat</arguments>
+</configuration>

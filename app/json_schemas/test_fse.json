@@ -1,0 +1,33 @@
+{
+    "sujetoExcluido": {
+        "nombre": "Marcelo Cerritos",
+        "tipoDocumento": "13",
+        "numDocumento": "058883533",
+        "direccion": {
+            "departamento": "06",
+            "municipio": "14",
+            "complemento": "San Salvador"
+        },
+        "telefono": "76646560",
+        "correo": "user@example.com"
+    },
+    "cuerpoDocumento": [
+        {
+            "tipoItem": 1,
+            "cantidad": 1,
+            "uniMedida": 59,
+            "descripcion": "Test Excluido",
+            "precioUni": 10,
+            "codigo": "1",
+            "montoDescu": 0,
+            "compra": 10
+        }
+    ],
+    "resumen": {
+        "descu": 0,
+        "totalDescu": 0,
+        "ivaRete1": 0,
+        "condicionOperacion": 1
+    },
+    "apendice": null
+}

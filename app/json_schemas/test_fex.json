@@ -1,0 +1,43 @@
+{
+    "emisor": {
+        "regimen": "EX-1.1000.000",
+        "recintoFiscal": "05",
+        "tipoItemExpor": 1
+    },
+    "receptor": {
+        "tipoDocumento": "37",
+        "numDocumento": "25362536",
+        "nombre": "Luis Miguel Mexicano",
+        "descActividad": "Compra y venta de smartphones",
+        "codPais": "9600",
+        "nombrePais": "MEXICO",
+        "complemento": "Bastante lejos",
+        "nombreComercial": " ",
+        "tipoPersona": 1,
+        "telefono": "111222333444555",
+        "correo": "luismi@mexico.com"
+    },
+    "cuerpoDocumento": [
+        {
+            "cantidad": 100,
+            "codigo": null,
+            "uniMedida": 59,
+            "descripcion": "Smartphones",
+            "precioUni": 200,
+            "montoDescu": 0,
+            "ventaGravada": 20000
+        }
+    ],
+    "otrosDocumentos": null,
+    "ventaTercero": null,
+    "resumen": {
+        "porcentajeDescuento": 0,
+        "condicionOperacion": 1,
+        "codIncoterms": "01",
+        "descIncoterms": "EXW-En fabrica",
+        "flete": 0,
+        "seguro": 0,
+        "descuento": 2000
+    },
+    "apendice": null
+}

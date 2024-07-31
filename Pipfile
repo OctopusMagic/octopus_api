@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+uvicorn = {version = "*", extras = ["standard"]}
+requests = "*"
+num2words = "*"
+tortoise-orm = {version = "*", extras = ["asyncmy"]}
+loguru = "*"
+pydantic-settings = "*"
+pandas = "*"
+python-multipart = "*"
+pydantic = {extras = ["email"], version = "*"}
+dbf = "*"
+
+[dev-packages]
+datamodel-code-generator = "*"
+ipykernel = "*"
+
+[requires]
+python_version = "3.10"

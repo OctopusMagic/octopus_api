@@ -1,0 +1,57 @@
+{
+    "receptor": {
+        "nrc": "1497729",
+        "nombre": "string",
+        "codActividad": "58200",
+        "descActividad": "Edición de Programas Informáticos (Software)",
+        "direccion": {
+            "departamento": "06",
+            "municipio": "14",
+            "complemento": "San Salvador"
+        },
+        "telefono": "78888888",
+        "correo": "gerardo.chahin@gmail.com",
+        "nit": "03151406701033",
+        "nombreComercial": "J&G Soluciones"
+    },
+    "cuerpoDocumento": [
+        {
+            "numItem": 1,
+            "tipoItem": 1,
+            "numeroDocumento": "3000009",
+            "cantidad": 5.98,
+            "codigo": "SUP",
+            "codTributo": null,
+            "uniMedida": 22,
+            "descripcion": "GASOLINA SUPER",
+            "precioUni": 3.4779,
+            "montoDescu": 0,
+            "ventaNoSuj": 20.80,
+            "ventaExenta": 0,
+            "ventaGravada": 0,
+            "tributos": null
+        }
+    ],
+    "documentoRelacionado": [
+        {
+            "tipoDocumento": "03",
+            "tipoGeneracion": 1,
+            "numeroDocumento": "3000009",
+            "fechaEmision": "2024-04-16"
+        }
+    ],
+    "ventaTercero": null,
+    "resumen": {
+        "descuNoSuj": 0,
+        "descuExtenta": 0,
+        "descuGravada": 0,
+        "porcentajeDescuento": 0,
+        "ivaRete1": 0,
+        "reteRenta": 0,
+        "saldoFavor": 0,
+        "condicionOperacion": 1,
+        "ivaPerci1": 0
+    },
+    "extension": null,
+    "apendice": null
+}
