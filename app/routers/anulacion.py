@@ -1,6 +1,7 @@
 from io import StringIO
 
 from fastapi import APIRouter, File, UploadFile, status, HTTPException
+from loguru import logger
 import pandas as pd
 
 from app import schemas
@@ -63,7 +64,7 @@ async def create_from_txt(file: UploadFile = File(...)):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"Error al convertir el archivo TXT: {e}"
         )
-    print(anulacion.model_dump_json())
+    logger.info(anulacion.model_dump_json())
     documento_firmado = firmar_documento(anulacion)
     
     if not documento_firmado.status == "OK":

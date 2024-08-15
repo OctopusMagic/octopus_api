@@ -60,8 +60,8 @@ async def convert_df_to_fe(df: pd.DataFrame) -> tuple[FacturaElectronica, str]:
     for index, row in df.iterrows():
         correlativo = row[0].strip()
         tributos = []
-        tributo1 = row[15].strip() or None
-        tributo2 = row[16].strip() or None
+        tributo1 = str(row[15]).strip() or None
+        tributo2 = str(row[16]).strip() or None
 
         if tributo1 is not None:
             tributos.append(tributo1)

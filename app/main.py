@@ -5,6 +5,8 @@ from app.config import openapi_config
 from app.initializer import init
 
 
+logger.add("octopus_api.log", rotation="00:00")
+
 app = FastAPI(
     title=openapi_config.name,
     description=openapi_config.description,

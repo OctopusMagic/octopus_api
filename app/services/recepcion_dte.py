@@ -2,9 +2,10 @@ from datetime import datetime
 import json
 
 from fastapi.responses import JSONResponse
+from fastapi import HTTPException, status
+from loguru import logger
 import requests
 
-from fastapi import HTTPException, status
 
 from app.models.enums import Dte
 from app import schemas
@@ -106,7 +107,7 @@ async def recepcion_dte(
                     ],
                 )
             else:
-                print(f"Email disabled: {receptor_mail or DEFAULT_RECEIVER}")
+                logger.info(f"Email disabled: {receptor_mail or DEFAULT_RECEIVER}")
 
             return schemas.DTESchema(
                 codGeneracion=dte.codGeneracion,
@@ -141,9 +142,6 @@ async def recepcion_dte(
                 )
             await dte.save()
 
-            print(documento_sin_firma)
-            print(respuesta)
-
             return schemas.DTESchema(
                 codGeneracion=dte.codGeneracion,
                 selloRecibido=dte.selloRecibido,
@@ -157,10 +155,10 @@ async def recepcion_dte(
                 enlace_rtf="",
             )
     except requests.exceptions.HTTPError as e:
-        print(f"HTTPError: {e}")
+        logger.error(f"HTTPError: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=e)
     except requests.exceptions.ConnectionError as e:
-        print(f"ConnectionError: {e}")
+        logger.error(f"ConnectionError: {e}")
         if actualizar_dte:
             raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=e)
         else:
@@ -191,7 +189,7 @@ async def recepcion_dte(
         )
 
     except requests.exceptions.Timeout as e:
-        print(f"Timeout: {e}")
+        logger.error(f"Timeout: {e}")
         if actualizar_dte:
             raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=e)
         else:
@@ -222,7 +220,7 @@ async def recepcion_dte(
         )
 
     except requests.exceptions.RequestException as e:
-        print(f"RequestException: {e}")
+        logger.error(f"RequestException: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=e)
 
 
@@ -244,7 +242,7 @@ async def factura_raw(documento_firmado: str):
 
     except Exception as e:
         # Handle other exceptions here
-        print(f"Exception: {e}")
+        logger.error(f"Exception: {e}")
 
 
 async def consultar_dte(codigo_generacion: str, tdte: str = "01") -> dict:
@@ -322,7 +320,7 @@ async def anular_dte(
                     files=[],
                 )
             else:
-                print(f"Email disabled: {receptor_mail or DEFAULT_RECEIVER}")
+                logger.info(f"Email disabled: {receptor_mail or DEFAULT_RECEIVER}")
 
             return respuesta_hacienda
         else:
@@ -331,24 +329,24 @@ async def anular_dte(
             )
 
     except requests.exceptions.HTTPError as e:
-        print(f"HTTPError: {e}")
+        logger.error(f"HTTPError: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=e)
     except requests.exceptions.ConnectionError as e:
-        print(f"ConnectionError: {e}")
+        logger.error(f"ConnectionError: {e}")
         return {
             "status": "Error",
             "message": "Error de conexión con el servidor de Hacienda",
         }
 
     except requests.exceptions.Timeout as e:
-        print(f"Timeout: {e}")
+        logger.error(f"Timeout: {e}")
         return {
             "status": "Error",
             "message": "Tiempo de espera agotado con el servidor de Hacienda",
         }
 
     except requests.exceptions.RequestException as e:
-        print(f"RequestException: {e}")
+        logger.error(f"RequestException: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=e)
 
 
@@ -414,22 +412,22 @@ async def contingencia_dte(
                 detail=respuesta_hacienda
             )
     except requests.exceptions.HTTPError as e:
-        print(f"HTTPError: {e}")
+        logger.error(f"HTTPError: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=e)
     except requests.exceptions.ConnectionError as e:
-        print(f"ConnectionError: {e}")
+        logger.error(f"ConnectionError: {e}")
         return {
             "status": "error",
             "message": "Error de conexión con el servidor de Hacienda",
         }
 
     except requests.exceptions.Timeout as e:
-        print(f"Timeout: {e}")
+        logger.error(f"Timeout: {e}")
         return {
             "status": "error",
             "message": "Tiempo de espera agotado con el servidor de Hacienda",
         }
 
     except requests.exceptions.RequestException as e:
-        print(f"RequestException: {e}")
+        logger.error(f"RequestException: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=e)

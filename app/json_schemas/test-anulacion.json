@@ -1,0 +1,18 @@
+{
+    "documento": {
+        "codigoGeneracion": "56E5FAE9-B0A7-48AB-8E85-86E309CC38D0",
+        "fechaEmision": "2024-08-01",
+        "horaEmision": "00:32:41",
+        "codigoGeneracionR": null
+    },
+    "motivo": {
+        "tipoAnulacion": 2,
+        "motivoAnulacion": "Rescindir de la Operación",
+        "nombreResponsable": " FOAM INDUSTRIAL, S.A. DE C.V.",
+        "tipoDocResponsable": "36",
+        "numDocResponsable": "06140112081095",
+        "nombreSolicita": " FOAM INDUSTRIAL, S.A. DE C.V.",
+        "tipoDocSolicita": "36",
+        "numDocSolicita": "06140112081095"
+    }
+}

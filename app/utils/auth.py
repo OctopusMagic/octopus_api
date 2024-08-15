@@ -1,5 +1,6 @@
 import time
 
+from loguru import logger
 import requests
 
 from app.config.cfg import AUTH_URL, AUTH_PASSWORD, NIT
@@ -31,7 +32,7 @@ def obtain_new_token():
         token_storage["expires_at"] = time.time() + 24 * 3600
         return response.text
     else:
-        print("Error:", response.text)
+        logger.error("Error:", response.text)
         return None
 
 
