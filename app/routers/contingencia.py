@@ -10,6 +10,7 @@ from app.services.generar_dte import generate_contingencia
 # from app.services.pandas_to_dte import convert_df_to_contingencia
 from app.services.recepcion_dte import contingencia_dte
 from app.utils.signing import firmar_documento
+from app.utils.dbf_writer import reconciliar_dbf
 from datetime import timedelta
 
 
@@ -105,3 +106,16 @@ async def create_auto():
     )
 
     return respuesta_hacienda
+
+
+@router.get("/reconciliar")
+async def reconciliar():
+    dtes = await DTE.all()
+    reconciliar_dbf(dtes)
+    return JSONResponse(
+        content={
+            "status": "success",
+            "message": "DBF reconciliado"
+        },
+        status_code=200
+    )
