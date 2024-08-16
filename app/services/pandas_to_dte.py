@@ -519,7 +519,7 @@ async def convert_df_to_anulacion(df: pd.DataFrame) -> Anulacion:
         nombre = documento["sujetoExcluido"]["nombre"] or None
         telefono = documento["sujetoExcluido"]["telefono"] or None
         correo = documento["sujetoExcluido"]["correo"] or None
-    elif documento["identificacion"]["tipoDte"] == "03":
+    elif documento["identificacion"]["tipoDte"] == "03" or documento["identificacion"]["tipoDte"] == "05":
         tipoDocumento = "36"
         numDocumento = documento["receptor"]["nit"]
         nombre = documento["receptor"]["nombre"] or None
