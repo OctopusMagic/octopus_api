@@ -1,5 +1,5 @@
 DEPARTAMENTOS = {
-    'AHUACHAPÁN': {
+    'AHUACHAPAN': {
         'codigo': '01',
         'municipios': {
             'AHUACHAPÁN': '01',
@@ -144,7 +144,7 @@ DEPARTAMENTOS = {
             "CIUDAD DELGADO": "19"
         }
     },
-    "CUSCATLÁN": {
+    "CUSCATLAN": {
         "codigo": "07",
         "municipios": {
             "CANDELARIA": "01",
@@ -224,7 +224,7 @@ DEPARTAMENTOS = {
             "VERAPAZ": "13",
         }
     },
-    "USULUTÁN": {
+    "USULUTAN": {
         "codigo": "11",
         "municipios": {
             "ALEGRÍA": "01",
@@ -277,7 +277,7 @@ DEPARTAMENTOS = {
             "ULUAZAPA": "20",
         }
     },
-    "MORAZÁN": {
+    "MORAZAN": {
         "codigo": "13",
         "municipios": {
             "ARAMBALA": "01",
@@ -308,7 +308,7 @@ DEPARTAMENTOS = {
             "YOLOAIQUÍN": "26",
         }
     },
-    "LA UNIÓN": {
+    "LA UNION": {
         "codigo": "14",
         "municipios": {
             "ANAMORÓS": "01",
