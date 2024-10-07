@@ -10,6 +10,7 @@ class DTE(models.Model):
     fhProcesamiento = fields.DatetimeField(null=False, auto_now_add=True)
     observaciones = fields.TextField(null=True)
     tipo_dte = fields.CharField(max_length=255, null=False)
+    
 
     class Meta:
         table = 'dte_generados'

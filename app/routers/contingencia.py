@@ -9,6 +9,7 @@ from app.schemas.contingencia import ItemContingenciaAPI, ResumenContingenciaAPI
 from app.services.generar_dte import generate_contingencia
 # from app.services.pandas_to_dte import convert_df_to_contingencia
 from app.services.recepcion_dte import contingencia_dte
+from app.utils.contingencia import obtener_contingencia, activar_contingencia, desactivar_contingencia
 from app.utils.signing import firmar_documento
 from app.utils.dbf_writer import reconciliar_dbf
 from datetime import timedelta
@@ -109,13 +110,53 @@ async def create_auto():
 
 
 @router.get("/reconciliar")
-async def reconciliar():
-    dtes = await DTE.all()
+async def reconciliar(fecha: str):
+    fecha_inicio = fecha + " 00:00:00"
+    fecha_fin = fecha + " 23:59:59"
+    dtes = await DTE.filter(
+        fhProcesamiento__gte=fecha_inicio,
+        fhProcesamiento__lte=fecha_fin,
+    ).all()
     reconciliar_dbf(dtes)
     return JSONResponse(
         content={
             "status": "success",
             "message": "DBF reconciliado"
+        },
+        status_code=200
+    )
+
+
+@router.get("/activar")
+async def activar():
+    activar_contingencia()
+    return JSONResponse(
+        content={
+            "status": "success",
+            "message": "Contingencia activada"
+        },
+        status_code=200
+    )
+
+
+@router.get("/desactivar")
+async def desactivar():
+    desactivar_contingencia()
+    return JSONResponse(
+        content={
+            "status": "success",
+            "message": "Contingencia desactivada"
+        },
+        status_code=200
+    )
+
+
+@router.get("/estado")
+async def estado():
+    return JSONResponse(
+        content={
+            "status": "success",
+            "message": obtener_contingencia()
         },
         status_code=200
     )

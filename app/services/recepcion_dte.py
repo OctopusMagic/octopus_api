@@ -24,6 +24,7 @@ from app.models.orm import DTE
 from app.services.generacion_pdf import generar_pdf
 from app.services.mail_sender import send_mail
 from app.utils.auth import get_token
+from app.utils.contingencia import obtener_contingencia
 from app.utils.signing import firmar_documento_raw
 from app.utils.dte_date_parser import parse_dte_date
 from app.utils.dbf_writer import update_records
@@ -41,6 +42,33 @@ async def recepcion_dte(
 ) -> schemas.DTESchema:
     """Request to the Recepción DTE API to send a DTE."""
     try:
+        if obtener_contingencia():
+            dte = DTE(
+                codGeneracion=codGeneracion,
+                selloRecibido=None,
+                estado="CONTINGENCIA",
+                documento=documento_sin_firma,
+                fhProcesamiento=datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                observaciones="Contingencia Activada Manualmente",
+                tipo_dte=tipoDte,
+            )
+            await dte.save()
+
+            documentos = generar_pdf(documento_sin_firma, "CONTINGENCIA", tipoDte)
+
+            return schemas.DTESchema(
+                codGeneracion=dte.codGeneracion,
+                selloRecibido=dte.selloRecibido,
+                estado=dte.estado,
+                documento=dte.documento,
+                fhProcesamiento=dte.fhProcesamiento,
+                observaciones=dte.observaciones,
+                tipo_dte=tipoDte,
+                enlace_pdf=documentos["pdfUrl"],
+                enlace_json=documentos["jsonUrl"],
+                enlace_rtf=documentos["rtfUrl"],
+            )
+
         token = get_token()
         headers = {"Authorization": f"{token}"}
         data = {
