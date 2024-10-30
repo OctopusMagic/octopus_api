@@ -786,7 +786,7 @@ async def convert_df_to_fex(df: pd.DataFrame) -> tuple[FacturaExportacion, str]:
             numDocumento=str(current_row[5]),
             nombre=current_row[6].strip(),
             descActividad=current_row[7].strip(),
-            codPais=str(current_row[8]),
+            codPais=str(current_row[8]).strip(),
             nombrePais=current_row[9].strip(),
             complemento=current_row[10].strip(),
             nombreComercial=current_row[6].strip(),
