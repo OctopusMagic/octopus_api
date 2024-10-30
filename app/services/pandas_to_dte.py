@@ -678,7 +678,7 @@ async def convert_df_to_nc(df: pd.DataFrame) -> tuple[NotaCredito, str]:
             correo=emisor.correo,
         ),
         receptor=ReceptorCCF(
-            nit=str(current_row[4]).zfill(14),
+            nit=str(current_row[4]).strip(),
             nrc=str(current_row[5]),
             nombre=current_row[6].strip(),
             codActividad=str(current_row[7]).strip(),
