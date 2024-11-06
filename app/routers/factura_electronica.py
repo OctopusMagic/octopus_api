@@ -61,13 +61,13 @@ async def create_from_txt(file: UploadFile = File(...)):
     content = await file.read()
     string_io = StringIO(content.decode("utf-8", errors="ignore"))
     df = pd.read_csv(string_io, sep="|", header=None, dtype={0: str, 45: str, 48: str})
-    # try:
-    fe, correlativo = await convert_df_to_fe(df)
-    # except Exception as e:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_400_BAD_REQUEST,
-    #         detail=f"Error al convertir el archivo TXT: {e}"
-    #     )
+    try:
+        fe, correlativo = await convert_df_to_fe(df)
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Error al convertir el archivo TXT: {e}"
+        )
     documento_firmado: DocumentoFirmado = firmar_documento(fe)
 
     if not documento_firmado.status == "OK":

@@ -60,14 +60,14 @@ async def create(nota_credito: schemas.NotaCreditoAPI):
 async def create_from_txt(file: UploadFile = File(...)):
     content = await file.read()
     string_io = StringIO(content.decode("utf-8", errors="ignore"))
-    df = pd.read_csv(string_io, sep="|", header=None, dtype={0: str, 7: str, 52: str})
-    # try:
-    nc, correlativo = await convert_df_to_nc(df)
-    # except Exception as e:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_400_BAD_REQUEST,
-    #         detail=f"Error al convertir el archivo TXT: {e}"
-    #     )
+    df = pd.read_csv(string_io, sep="|", header=None, dtype={0: str, 4: str, 7: str, 52: str})
+    try:
+        nc, correlativo = await convert_df_to_nc(df)
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Error al convertir el archivo TXT: {e}"
+        )
     documento_firmado: DocumentoFirmado = firmar_documento(nc)
 
     if not documento_firmado.status == "OK":
