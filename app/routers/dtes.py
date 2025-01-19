@@ -40,14 +40,11 @@ async def read_one(dte_id: str):
     "/statistics/",
     status_code=status.HTTP_200_OK,
     summary="Obtener estadísticas de los DTEs")
-async def read_statistics(fecha: str = None):
-    if fecha:
-        # Convert fecha to datetime 00:00:00 and 23:59:59
-        fecha_inicio = f"{fecha} 00:00:00"
-        fecha_fin = f"{fecha} 23:59:59"
+async def read_statistics(fecha_inicio: str = None, fecha_fin: str = None):
+    if fecha_inicio and fecha_fin:
         dtes = await DTE.filter(fhProcesamiento__gte=fecha_inicio, fhProcesamiento__lte=fecha_fin)
     else:
-        dtes = await DTE.all()
+        dtes = await DTE.all().order_by("-fhProcesamiento")
 
     total = len(dtes)
     approved = len([dte for dte in dtes if dte.estado == "PROCESADO"])
