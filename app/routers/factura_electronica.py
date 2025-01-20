@@ -11,7 +11,7 @@ from app.models.enums import Dte
 from app.models.dte import DocumentoFirmado
 from app.services.generar_dte import generate_factura_electronica
 from app.services.pandas_to_dte import convert_df_to_fe
-from app.services.recepcion_dte import recepcion_dte, consultar_dte
+from app.services.recepcion_dte import recepcion_dte, consultar_dte,reintentar_rechazos
 from app.utils.signing import firmar_documento, firmar_documento_raw
 
 router = APIRouter()
@@ -137,3 +137,11 @@ async def create_from_json(factura: dict):
     summary="Consultar una Factura Electrónica")
 async def consultar_factura(codGeneracion: str, tdte: str = "01"):
     return await consultar_dte(codGeneracion, tdte)
+
+
+@router.get(
+    "/reintentar/",
+    status_code=status.HTTP_200_OK,
+    summary="Reintentar envío de Facturas Electrónicas rechazadas")
+async def reintentar_rechazados():
+    return await reintentar_rechazos()

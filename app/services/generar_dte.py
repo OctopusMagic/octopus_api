@@ -358,15 +358,9 @@ async def generate_contingencia(contingencia: ContingenciaAPI) -> Contingencia:
     for dte in contingencia.detalleDTE:
         dteContingencia = await DTE.filter(codGeneracion=dte.codigoGeneracion).first()
         if not dteContingencia:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="DTE no encontrado"
-            )
+            continue
         if dteContingencia.estado == "PROCESADO":
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="El DTE ya ha sido procesado"
-            )
+            continue
 
         dtes_contingencia.append(ItemContingencia(
             noItem=noItem,

@@ -28,7 +28,7 @@ from app.utils.contingencia import obtener_contingencia
 from app.utils.signing import firmar_documento_raw
 from app.utils.dte_date_parser import parse_dte_date
 from app.utils.dbf_writer import update_records
-
+from app.utils.codes import generate_numero_control
 
 async def recepcion_dte(
     codGeneracion: str,
@@ -459,3 +459,43 @@ async def contingencia_dte(
     except requests.exceptions.RequestException as e:
         logger.error(f"RequestException: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=e)
+
+
+async def reintentar_rechazos() -> dict:
+    dtes = await DTE.filter(estado="RECHAZADO").all()
+    dtes_actualizados = []
+
+    for dte in dtes:
+        documento = json.loads(dte.documento)
+        documento["identificacion"]["numeroControl"] = generate_numero_control(
+            documento["identificacion"]["tipoDte"],
+            int(datetime.now().timestamp())
+        )
+        
+        documento_firmado = firmar_documento_raw(documento)
+        if not documento_firmado.status == "OK":
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=documento_firmado.body
+            )
+        respuesta_hacienda = await recepcion_dte(
+            codGeneracion=dte.codGeneracion,
+            ambiente=HACIENDA_ENV,
+            idEnvio=1,
+            version=documento["identificacion"]["version"],
+            tipoDte=documento["identificacion"]["tipoDte"],
+            documento_firmado=documento_firmado.body,
+            documento_sin_firma=json.dumps(documento, ensure_ascii=False),
+            actualizar_dte=True
+        )
+        if respuesta_hacienda.estado == "ACEPTADO":
+            dtes_actualizados.append({
+                "codGeneracion": respuesta_hacienda.codGeneracion,
+                "selloRecibido": respuesta_hacienda.selloRecibido,
+                "estado": respuesta_hacienda.estado
+            })
+
+        return JSONResponse(
+            content=dtes_actualizados,
+            status_code=status.HTTP_200_OK
+        )
