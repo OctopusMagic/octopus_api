@@ -156,8 +156,8 @@ async def recepcion_dte(
                 dte = await DTE.filter(codGeneracion=codGeneracion).first()
                 dte.selloRecibido = None
                 dte.estado = "RECHAZADO"
-                dte.fhProcesamiento = datetime.now(),
-                dte.observaciones = f"{respuesta.get('descripcionMsg')} {respuesta.get('observaciones')}",
+                dte.fhProcesamiento = datetime.now()
+                dte.observaciones = f"{respuesta.get('descripcionMsg')} {respuesta.get('observaciones')}"
             else:
                 dte = DTE(
                     codGeneracion=codGeneracion,
@@ -488,11 +488,18 @@ async def reintentar_rechazos() -> dict:
             documento_sin_firma=json.dumps(documento, ensure_ascii=False),
             actualizar_dte=True
         )
-        if respuesta_hacienda.estado == "ACEPTADO":
+        if respuesta_hacienda.estado == "PROCESADO":
             dtes_actualizados.append({
                 "codGeneracion": respuesta_hacienda.codGeneracion,
                 "selloRecibido": respuesta_hacienda.selloRecibido,
-                "estado": respuesta_hacienda.estado
+                "estado": respuesta_hacienda.estado,
+                "observaciones": respuesta_hacienda.observaciones
+            })
+        else:
+            dtes_actualizados.append({
+                "codGeneracion": respuesta_hacienda.codGeneracion,
+                "estado": respuesta_hacienda.estado,
+                "observaciones": respuesta_hacienda.observaciones
             })
 
         return JSONResponse(
